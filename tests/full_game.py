@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import sys
 
+sys.path.append("..")
+
 from fireplace import cards
 from fireplace.exceptions import GameOver
 from fireplace.logging import log
 from fireplace.utils import play_full_game
 
-
-sys.path.append("..")
 
 
 def test_full_game():

@@ -435,16 +435,24 @@ class MulliganChoice(GameAction):
         self.max_count = len(player.hand)
         source.game.manager.game_action(self, source, player)
 
+    #input: cards subject to be replaced.
     def choose(self, *cards):
         for card in cards:
             assert card in self.cards
         self.player.choice = None
+        #print("\ninside actions.choose")
         for card in cards:
+            #print(card.zone_position, card)
             card._summon_index = 0
-            new_card = self.player.deck[-1]
+            #draw from 0 idx, drawing from -1 idx results in drawing the card that player just shuffled in. -> decks are randomly shuffled - so it's random draw.
+            new_card = self.player.deck[0]
             new_card._summon_index = card.zone_position
+            #print(new_card.zone_position, new_card._summon_index, new_card)
+
+            #remove the card from hand and add it to the deck, then add the new card to the hand
             card.zone = Zone.DECK
             new_card.zone = Zone.HAND
+            #move the shuffling function.
         self.player.shuffle_deck()
         self.player.mulligan_state = Mulligan.DONE
 

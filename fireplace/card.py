@@ -229,7 +229,8 @@ class BaseCard(BaseEntity):
             caches[self.old_zone].remove(self)
         if caches.get(value) is not None:
             if hasattr(self, "_summon_index") and self._summon_index is not None:
-                caches[value].insert(self._summon_index, self)
+                #changing it to the summon_index- to test the insertion. -> this way the position of the mulligan cards remain the same.
+                caches[value].insert(self._summon_index-1, self)
             else:
                 caches[value].append(self)
         self._zone = value

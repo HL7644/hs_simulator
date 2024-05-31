@@ -36,6 +36,7 @@ class BaseGame(Entity):
     Manager = GameManager
 
     def __init__(self, players: "list[Player]"):
+        #game consists of 2 players.
         self.player1: Player
         self.player2: Player
         self.data = None
